@@ -5,9 +5,13 @@ using UnityEngine.XR.ARSubsystems;
 
 public class ARPlacementManager : MonoBehaviour
 {
+    [SerializeField] Camera m_MainCamera;
+
     [SerializeField] GameObject m_PlacementIndicator;
 
     [SerializeField] GalleryManager m_GalleryManager;
+
+    [SerializeField] RectTransform m_InteractionArea;
 
     private ARRaycastManager m_ARRaycastManager;
 
@@ -27,20 +31,18 @@ public class ARPlacementManager : MonoBehaviour
 
         if (m_PlacementPoseIsValid && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
         {
-            //Instantiate(ObjectToPlace, m_PlacementPose.position, m_PlacementPose.rotation);
-            m_GalleryManager.InstantiateSelectedModel(m_PlacementPose.position, m_PlacementPose.rotation);
+            var touch = Input.GetTouch(0);
+            if (touch.position.y > Screen.height * 0.2f)
+            {
+                m_GalleryManager.InstantiateSelectedModel(m_PlacementPose.position, m_PlacementPose.rotation);
+                gameObject.SetActive(false);
+            }
         }
     }
 
     private void UpdatePlacementPose()
     {
-        if (Camera.current == null)
-        {
-            m_PlacementPoseIsValid = false;
-            return;
-        }
-            
-        var screenCenter = Camera.current.ViewportToScreenPoint(new Vector3(0.5f, 0.5f));
+        var screenCenter = m_MainCamera.ViewportToScreenPoint(new Vector3(0.5f, 0.5f));
         var hits = new List<ARRaycastHit>();
         m_ARRaycastManager.Raycast(screenCenter, hits, TrackableType.Planes);
 
@@ -49,7 +51,7 @@ public class ARPlacementManager : MonoBehaviour
         {
             m_PlacementPose = hits[0].pose;
 
-            var cameraForward = Camera.current.transform.forward;
+            var cameraForward = m_MainCamera.transform.forward;
             var cameraBearing = new Vector3(cameraForward.x, 0f, cameraForward.z).normalized;
             m_PlacementPose.rotation = Quaternion.LookRotation(cameraBearing);
         }
