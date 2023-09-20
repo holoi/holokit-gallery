@@ -473,6 +473,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shibahu_skechfab
       objectReference: {fileID: 0}
+    - target: {fileID: 3631097272191390097, guid: d9317b1d894fb4356906bc4fe19ca8ec, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
