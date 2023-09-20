@@ -35,7 +35,7 @@ public class GalleryManager : MonoBehaviour
             Quaternion rotation = m_SpawnedModel.transform.rotation;
 
             Destroy(m_SpawnedModel);
-            InstantiateSelectedModel(position, rotation);
+            InstantiateSelectedModel(position, Quaternion.Euler(0f, 180f, 0f) * rotation);
         }
     }
 
