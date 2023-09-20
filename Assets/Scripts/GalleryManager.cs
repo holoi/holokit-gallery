@@ -22,8 +22,7 @@ public class GalleryManager : MonoBehaviour
 
     private void Start()
     {
-        // Set the default model
-        m_SelectedModel = m_Models[0].Model;
+
     }
 
     public void OnModelSelected(int idx)
@@ -33,9 +32,9 @@ public class GalleryManager : MonoBehaviour
         {
             Vector3 position = m_SpawnedModel.transform.position;
             Quaternion rotation = m_SpawnedModel.transform.rotation;
+            Debug.Log($"position: {position}, rotation: {rotation}");
 
-            Destroy(m_SpawnedModel);
-            InstantiateSelectedModel(position, Quaternion.Euler(0f, 180f, 0f) * rotation);
+            InstantiateSelectedModel(position, rotation);
         }
     }
 

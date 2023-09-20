@@ -34,7 +34,7 @@ public class ARPlacementManager : MonoBehaviour
             var touch = Input.GetTouch(0);
             if (touch.position.y > Screen.height * 0.2f)
             {
-                m_GalleryManager.InstantiateSelectedModel(m_PlacementPose.position, m_PlacementPose.rotation);
+                m_GalleryManager.InstantiateSelectedModel(m_PlacementPose.position, Quaternion.Euler(0f, 180f, 0f) * m_PlacementPose.rotation);
                 gameObject.SetActive(false);
             }
         }
