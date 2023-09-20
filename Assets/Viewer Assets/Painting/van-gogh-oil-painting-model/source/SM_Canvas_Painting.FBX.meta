@@ -3,7 +3,12 @@ guid: 676331109ea014d8a98717df41c0980b
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MI_Canvas
+    second: {fileID: 2100000, guid: 653a03b8da990421b9fa7dbd1ebb144a, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
