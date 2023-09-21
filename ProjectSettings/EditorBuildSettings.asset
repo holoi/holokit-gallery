@@ -8,6 +8,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Main.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 0
+    path: Assets/Scenes/XRI Test.unity
+    guid: bbd08244a80bb44598764e6e824f3d79
   m_configObjects:
     UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: 9b598b6ea6016435cb775ee5d67ee259, type: 2}
     com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: 30771082b65f741a2acf9894ca494c53, type: 2}
