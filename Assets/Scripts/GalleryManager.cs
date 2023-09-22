@@ -15,6 +15,8 @@ public class GalleryManager : MonoBehaviour
 {
     [SerializeField] private List<ModelData> m_Models;
 
+    [SerializeField] private ModelSelectionVisualizer m_ModelSelectionVisualizer;
+
     [SerializeField] private ARPlacementInteractable m_ARPlacementInteractable;
 
     public List<ModelData> Models => m_Models;
@@ -24,10 +26,21 @@ public class GalleryManager : MonoBehaviour
         foreach (var modelData in m_Models)
         {
             var model = modelData.Model;
-            model.AddComponent<ARSelectionInteractable>();
-            model.AddComponent<ARTranslationInteractable>();
-            model.AddComponent<ARRotationInteractable>();
-            model.AddComponent<ARScaleInteractable>();
+            // Add selection visualizer
+            if (model.GetComponentInChildren<ModelSelectionVisualizer>() == null)
+            {
+                _ = Instantiate(m_ModelSelectionVisualizer, model.transform);
+            }
+
+            // Add AR interactions
+            if (model.GetComponent<ARSelectionInteractable>() == null)
+            {
+                model.AddComponent<ARSelectionInteractable>();
+                var arTranslationInteractable = model.AddComponent<ARTranslationInteractable>();
+                arTranslationInteractable.objectGestureTranslationMode = GestureTransformationUtility.GestureTranslationMode.Any;
+                model.AddComponent<ARRotationInteractable>();
+                model.AddComponent<ARScaleInteractable>();
+            }
         }
 
         m_ARPlacementInteractable.placementPrefab = Models[0].Model;

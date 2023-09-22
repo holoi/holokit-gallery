@@ -15,6 +15,8 @@ public class TutorialManager : MonoBehaviour
 
     private GameObject m_CurrentTip;
 
+    private bool m_TutorialEnabled = false;
+
     public static Action OnGalleryStarted;
 
     public static Action OnAddButtonPressed;
@@ -36,6 +38,7 @@ public class TutorialManager : MonoBehaviour
     public void EnableTutorial(bool enabled)
     {
         m_CurrentTip.SetActive(enabled);
+        m_TutorialEnabled = enabled;
     }
 
     private void Awake()
@@ -57,7 +60,8 @@ public class TutorialManager : MonoBehaviour
             m_CurrentTip.SetActive(false);
 
         m_CurrentTip = nextTip;
-        m_CurrentTip.SetActive(true);
+        if (m_TutorialEnabled)
+            m_CurrentTip.SetActive(true);
     }
 
     private void OnGalleryStartedFunc()
