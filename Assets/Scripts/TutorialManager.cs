@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TutorialManager : MonoBehaviour
 {
@@ -15,7 +16,11 @@ public class TutorialManager : MonoBehaviour
 
     private GameObject m_CurrentTip;
 
-    private bool m_TutorialEnabled = false;
+    private bool m_TutorialEnabled = true;
+
+    private bool m_FirstTransform = true;
+
+    private const float FADE_DURATION = 0.5f;
 
     public static Action OnGalleryStarted;
 
@@ -54,19 +59,55 @@ public class TutorialManager : MonoBehaviour
         OnPinchGestureFinished += OnPinchGestureFinishedFunc;
     }
 
+    private void Start()
+    {
+        m_CurrentTip = m_AddObjectTip;
+        m_CurrentTip.SetActive(true);
+    }
+
     private void SwitchTip(GameObject nextTip)
     {
-        if (m_CurrentTip != null)
-            m_CurrentTip.SetActive(false);
+        //if (m_CurrentTip != null)
+        //    m_CurrentTip.SetActive(false);
 
-        m_CurrentTip = nextTip;
-        if (m_TutorialEnabled)
-            m_CurrentTip.SetActive(true);
+        //m_CurrentTip = nextTip;
+        //if (m_TutorialEnabled)
+        //    m_CurrentTip.SetActive(true);
+
+        var images = m_CurrentTip.GetComponentsInChildren<Image>();
+        LeanTween.value(gameObject, 1f, 0f, FADE_DURATION)
+            .setOnUpdate((float alpha) =>
+            {
+                foreach (var image in images)
+                {
+                    Color color = image.color;
+                    color.a = alpha;
+                    image.color = color;
+                }
+            })
+            .setOnComplete(() =>
+            {
+                m_CurrentTip.SetActive(false);
+                m_CurrentTip = nextTip;
+                m_CurrentTip.SetActive(true);
+
+                var newImages = m_CurrentTip.GetComponentsInChildren<Image>();
+                LeanTween.value(gameObject, 0f, 1f, FADE_DURATION)
+                    .setOnUpdate((float alpha) =>
+                    {
+                        foreach (var image in newImages)
+                        {
+                            Color color = image.color;
+                            color.a = alpha;
+                            image.color = color;
+                        }
+                    });
+            });
     }
 
     private void OnGalleryStartedFunc()
     {
-        SwitchTip(m_AddObjectTip);
+        //SwitchTip(m_AddObjectTip);
     }
 
     private void OnAddButtonPressedFunc()
@@ -76,7 +117,11 @@ public class TutorialManager : MonoBehaviour
 
     private void OnObjectAddedFunc()
     {
-        SwitchTip(m_DragToTranslateObjectTip);
+        if (m_FirstTransform)
+        {
+            m_FirstTransform = false;
+            SwitchTip(m_DragToTranslateObjectTip);
+        }
     }
 
     private void OnDragGestureStartedFunc()
@@ -86,7 +131,10 @@ public class TutorialManager : MonoBehaviour
 
     private void OnDragGestureFinishedFunc()
     {
-        SwitchTip(m_TwistToRotateObjectTip);
+        if (m_CurrentTip == m_DragToTranslateObjectTip)
+        {
+            SwitchTip(m_TwistToRotateObjectTip);
+        } 
     }
 
     private void OnTwistGestureStartedFunc()
@@ -96,7 +144,8 @@ public class TutorialManager : MonoBehaviour
 
     private void OnTwistGestureFinishedFunc()
     {
-        SwitchTip(m_PinchToScaleObjectTip);
+        if (m_CurrentTip == m_TwistToRotateObjectTip)
+            SwitchTip(m_PinchToScaleObjectTip);
     }
 
     private void OnPinchGestureStartedFunc()
@@ -106,6 +155,7 @@ public class TutorialManager : MonoBehaviour
 
     private void OnPinchGestureFinishedFunc()
     {
+        Debug.Log("OnPinchGestureFinishedFunc");
         m_CurrentTip.SetActive(false);
     }
 }

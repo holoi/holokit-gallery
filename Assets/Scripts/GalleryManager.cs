@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.AR;
 
 [Serializable]
@@ -15,9 +16,11 @@ public class GalleryManager : MonoBehaviour
 {
     [SerializeField] private List<ModelData> m_Models;
 
-    [SerializeField] private ModelSelectionVisualizer m_ModelSelectionVisualizer;
-
     [SerializeField] private ARPlacementInteractable m_ARPlacementInteractable;
+
+    [SerializeField] private XRInteractionManager m_XRInteractionManager;
+
+    [SerializeField] private ARGestureInteractor m_ARGestureInteractor;
 
     public List<ModelData> Models => m_Models;
 
@@ -26,16 +29,15 @@ public class GalleryManager : MonoBehaviour
         foreach (var modelData in m_Models)
         {
             var model = modelData.Model;
-            // Add selection visualizer
-            if (model.GetComponentInChildren<ModelSelectionVisualizer>() == null)
-            {
-                _ = Instantiate(m_ModelSelectionVisualizer, model.transform);
-            }
 
             // Add AR interactions
             if (model.GetComponent<ARSelectionInteractable>() == null)
             {
-                model.AddComponent<ARSelectionInteractable>();
+                var arSelectionInteractable = model.AddComponent<ARSelectionInteractable>();
+                var selectionVisualizer = model.GetComponentInChildren<ModelSelectionVisualizer>();
+                arSelectionInteractable.selectionVisualization = selectionVisualizer.gameObject;
+                selectionVisualizer.gameObject.SetActive(false);
+
                 var arTranslationInteractable = model.AddComponent<ARTranslationInteractable>();
                 arTranslationInteractable.objectGestureTranslationMode = GestureTransformationUtility.GestureTranslationMode.Any;
                 model.AddComponent<ARRotationInteractable>();
@@ -57,7 +59,7 @@ public class GalleryManager : MonoBehaviour
         m_ARPlacementInteractable.gameObject.SetActive(true);
     }
 
-    public void OnObjectPlaced()
+    public void OnObjectPlaced(ARObjectPlacementEventArgs args)
     {
         m_ARPlacementInteractable.gameObject.SetActive(false);
         TutorialManager.OnObjectAdded?.Invoke();

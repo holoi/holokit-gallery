@@ -5,13 +5,6 @@ public class ARGestureEventListener : MonoBehaviour
 {
     [SerializeField] private ARGestureInteractor m_ARGestureInteractor;
 
-    private bool m_DragGestureStarted = false;
-    private bool m_DragGestureFinished = false;
-    private bool m_TwistGestureStarted = false;
-    private bool m_TwistGestureFinished = false;
-    private bool m_PinchGestureStarted = false;
-    private bool m_PinchGestureFinished = false;
-
     private void Start()
     {
         m_ARGestureInteractor.dragGestureRecognizer.onGestureStarted += OnDragGestureStarted;
@@ -23,12 +16,7 @@ public class ARGestureEventListener : MonoBehaviour
     {
         gesture.onStart += (DragGesture g) =>
         {
-            Debug.Log("OnDragGestureStarted onStart");
-            if (!m_DragGestureStarted)
-            {
-                m_DragGestureStarted = true;
-                TutorialManager.OnDragGestureStarted?.Invoke();
-            }
+            TutorialManager.OnDragGestureStarted?.Invoke();
         };
 
         gesture.onUpdated += (DragGesture g) =>
@@ -38,12 +26,7 @@ public class ARGestureEventListener : MonoBehaviour
 
         gesture.onFinished += (DragGesture g) =>
         {
-            Debug.Log("OnDragGestureStarted onFinished");
-            if (!m_DragGestureFinished)
-            {
-                m_DragGestureFinished = true;
-                TutorialManager.OnDragGestureFinished?.Invoke();
-            }
+            TutorialManager.OnDragGestureFinished?.Invoke();
         };
     }
 
@@ -51,12 +34,7 @@ public class ARGestureEventListener : MonoBehaviour
     {
         gesture.onStart += (TwistGesture g) =>
         {
-            Debug.Log("OnTwistGestureStarted onStart");
-            if (!m_TwistGestureStarted)
-            {
-                m_TwistGestureStarted = true;
-                TutorialManager.OnTwistGestureStarted?.Invoke();              
-            }
+            TutorialManager.OnTwistGestureStarted?.Invoke();              
         };
 
         gesture.onUpdated += (TwistGesture g) =>
@@ -66,12 +44,7 @@ public class ARGestureEventListener : MonoBehaviour
 
         gesture.onFinished += (TwistGesture g) =>
         {
-            Debug.Log("OnTwistGestureStarted onFinished");
-            if (!m_TwistGestureFinished)
-            {
-                m_TwistGestureFinished = true;
-                TutorialManager.OnTwistGestureFinished?.Invoke();
-            }
+            TutorialManager.OnTwistGestureFinished?.Invoke();
         };
     }
 
@@ -79,12 +52,7 @@ public class ARGestureEventListener : MonoBehaviour
     {
         gesture.onStart += (PinchGesture g) =>
         {
-            Debug.Log("OnPinchGestureStarted onStart");
-            if (!m_PinchGestureStarted)
-            {
-                m_PinchGestureStarted = true;
-                TutorialManager.OnPinchGestureStarted?.Invoke();
-            }
+            TutorialManager.OnPinchGestureStarted?.Invoke();
         };
 
         gesture.onUpdated += (PinchGesture g) =>
@@ -94,12 +62,7 @@ public class ARGestureEventListener : MonoBehaviour
 
         gesture.onFinished += (PinchGesture g) =>
         {
-            Debug.Log("OnPinchGestureStarted onFinished");
-            if (!m_PinchGestureFinished)
-            {
-                m_PinchGestureFinished = true;
-                TutorialManager.OnPinchGestureFinished?.Invoke();
-            }
+            TutorialManager.OnPinchGestureFinished?.Invoke();
         };
     }
 }

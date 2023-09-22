@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 1147670425121027017}
   - component: {fileID: 6097931511162327724}
   - component: {fileID: 6211845870885198044}
+  - component: {fileID: 5171534184598510574}
   m_Layer: 0
-  m_Name: Prefab Selected Circle
+  m_Name: Selection Visualizer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -106,3 +107,15 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &5171534184598510574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154482540801232784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5f7db052fc17420eabca6687cbb8c38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
