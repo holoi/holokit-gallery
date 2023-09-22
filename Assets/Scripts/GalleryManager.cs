@@ -31,10 +31,22 @@ public class GalleryManager : MonoBehaviour
         }
 
         m_ARPlacementInteractable.placementPrefab = Models[0].Model;
+        TutorialManager.OnGalleryStarted?.Invoke();
     }
 
     public void OnModelSelected(int idx)
     {
         m_ARPlacementInteractable.placementPrefab = Models[idx].Model;
+    }
+
+    public void OnStartToPlaceObject()
+    {
+        m_ARPlacementInteractable.gameObject.SetActive(true);
+    }
+
+    public void OnObjectPlaced()
+    {
+        m_ARPlacementInteractable.gameObject.SetActive(false);
+        TutorialManager.OnObjectAdded?.Invoke();
     }
 }

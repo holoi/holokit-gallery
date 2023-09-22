@@ -13,8 +13,6 @@ public class ModelSelectorUIController : MonoBehaviour
 
     [SerializeField] private RectTransform m_Root;
 
-    private HoloKitCameraManager m_HoloKitCameraManager;
-
     private void Start()
     {
         int idx = 0;
@@ -37,24 +35,5 @@ public class ModelSelectorUIController : MonoBehaviour
 
             idx++;
         }
-
-        m_HoloKitCameraManager = FindObjectOfType<HoloKitCameraManager>();
-        m_HoloKitCameraManager.OnScreenRenderModeChanged += OnScreenRenderModeChanged;
-    }
-
-    private void Update()
-    {
-        if (m_HoloKitCameraManager.ScreenRenderMode == ScreenRenderMode.Mono)
-        {
-            if (Screen.orientation != ScreenOrientation.Portrait)
-            {
-                Screen.orientation = ScreenOrientation.Portrait;
-            }
-        }
-    }
-
-    private void OnScreenRenderModeChanged(ScreenRenderMode renderMode)
-    {
-        gameObject.SetActive(renderMode == ScreenRenderMode.Mono);
     }
 }
