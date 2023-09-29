@@ -155,10 +155,12 @@ MonoBehaviour:
   m_ModelLibrary: {fileID: 11400000, guid: ae0055a390abc4446be6af30a8ef6080, type: 2}
   m_ModelSelectionVisualizerPrefab: {fileID: 8149235404588489753, guid: 6c6dbc17ab6cb4412a77d712e046df59, type: 3}
   m_ARPlacementSystem: {fileID: 1336043571}
-  m_LeanTouch: {fileID: 0}
   m_LeanSelectByFinger: {fileID: 2003392670}
+  m_UIPanel: {fileID: 1204933283}
   m_OperationPanel: {fileID: 1350795283}
   m_SelectionPanel: {fileID: 1084105035}
+  m_CancelButton: {fileID: 603850026}
+  m_RestoreButton: {fileID: 931865476}
 --- !u!4 &33754122
 Transform:
   m_ObjectHideFlags: 0
@@ -367,7 +369,7 @@ GameObject:
   - component: {fileID: 113719218}
   - component: {fileID: 113719217}
   m_Layer: 5
-  m_Name: Pinch Tip
+  m_Name: Tip5 Pinch to scale
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -549,7 +551,7 @@ GameObject:
   - component: {fileID: 256312137}
   - component: {fileID: 256312136}
   m_Layer: 5
-  m_Name: Drag Tip
+  m_Name: Tip3 Drag to translate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -706,7 +708,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &405956243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -780,7 +782,7 @@ GameObject:
   - component: {fileID: 453359645}
   - component: {fileID: 453359644}
   m_Layer: 5
-  m_Name: Twist Tip
+  m_Name: Tip4 Twist to rotate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -987,9 +989,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1204933288}
-        m_TargetAssemblyTypeName: UIController, Assembly-CSharp
-        m_MethodName: OnCancelButtonPressed
+      - m_Target: {fileID: 33754121}
+        m_TargetAssemblyTypeName: App, Assembly-CSharp
+        m_MethodName: OnDeleteModel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1097,6 +1099,135 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &782628375
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 782628380}
+  - component: {fileID: 782628379}
+  - component: {fileID: 782628378}
+  - component: {fileID: 782628377}
+  - component: {fileID: 782628376}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &782628376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 782628375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4eda371e5375f454490a86f21559ee38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Use:
+    Filter: 0
+    IgnoreStartedOverGui: 1
+    RequiredFingerCount: 0
+    RequiredMouseButtons: 0
+    RequiredSelectable: {fileID: 0}
+  _camera: {fileID: 0}
+  sensitivity: 1
+  damping: -1
+  inertia: 0
+  remainingTranslation: {x: 0, y: 0, z: 0}
+--- !u!65 &782628377
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 782628375}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &782628378
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 782628375}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &782628379
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 782628375}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &782628380
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 782628375}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &931865474
 GameObject:
   m_ObjectHideFlags: 0
@@ -1179,9 +1310,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1204933288}
-        m_TargetAssemblyTypeName: UIController, Assembly-CSharp
-        m_MethodName: OnRestoreButtonPressed
+      - m_Target: {fileID: 33754121}
+        m_TargetAssemblyTypeName: App, Assembly-CSharp
+        m_MethodName: OnRestoreModel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1211,7 +1342,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e988cdba16d00403d8308cea578d9e73, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 03325d1238ecc43c0b30fe866577c411, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1535,7 +1666,7 @@ GameObject:
   - component: {fileID: 1063308324}
   - component: {fileID: 1063308323}
   m_Layer: 5
-  m_Name: Tap To Place Object Tip
+  m_Name: Tip2 Tap to place object
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1859,6 +1990,7 @@ GameObject:
   - component: {fileID: 1129843018}
   - component: {fileID: 1129843017}
   - component: {fileID: 1129843016}
+  - component: {fileID: 1129843019}
   m_Layer: 0
   m_Name: Switch Render Mode Button
   m_TagString: Untagged
@@ -1883,8 +2015,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -100, y: -40}
-  m_SizeDelta: {x: 200, y: 100}
+  m_AnchoredPosition: {x: -100, y: -60}
+  m_SizeDelta: {x: 180, y: 180}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1129843016
 MonoBehaviour:
@@ -1962,8 +2094,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 592bf0dc5199441c08bc37ad97bfd401, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1980,6 +2112,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1129843014}
   m_CullTransparentMesh: 1
+--- !u!114 &1129843019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1129843014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 348737a4a8037486683f89d3495e5b07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_StereoImage: {fileID: 21300000, guid: 592bf0dc5199441c08bc37ad97bfd401, type: 3}
+  m_MonoImage: {fileID: 21300000, guid: 9fbc8f20ffebc4f7aaa350a7943f3068, type: 3}
+  m_Image: {fileID: 1129843017}
 --- !u!1 &1204933283
 GameObject:
   m_ObjectHideFlags: 0
@@ -2100,6 +2247,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_OperationPanel: {fileID: 1350795283}
   m_ModelSelectionPanel: {fileID: 1084105035}
+  m_AddButtonFirstPressed: 1
+  m_HoloKitCameraManager: {fileID: 0}
 --- !u!1 &1231454344
 GameObject:
   m_ObjectHideFlags: 0
@@ -3134,12 +3283,12 @@ GameObject:
   - component: {fileID: 1576438647}
   - component: {fileID: 1576438648}
   m_Layer: 5
-  m_Name: Tutorial Panel
+  m_Name: Tips Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1576438647
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3174,14 +3323,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1576438646}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bac76e2fd8a7d4bee91e1bae95bd04a2, type: 3}
+  m_Script: {fileID: 11500000, guid: b919057ffd4d84140906bc17dd4cecd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AddObjectTip: {fileID: 2088458020}
-  m_TapToPlaceObjectTip: {fileID: 1063308321}
-  m_DragToTranslateObjectTip: {fileID: 256312134}
-  m_TwistToRotateObjectTip: {fileID: 453359642}
-  m_PinchToScaleObjectTip: {fileID: 113719215}
+  m_Tip1PressTheAddButton: {fileID: 2088458020}
+  m_Tip2TapToPlaceObject: {fileID: 1063308321}
 --- !u!1 &1607971411
 GameObject:
   m_ObjectHideFlags: 0
@@ -3267,7 +3413,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1576438648}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: TutorialManager, Assembly-CSharp
         m_MethodName: EnableTutorial
         m_Mode: 0
@@ -3817,10 +3963,34 @@ MonoBehaviour:
   selectables: []
   onSelected:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 33754121}
+        m_TargetAssemblyTypeName: App, Assembly-CSharp
+        m_MethodName: OnSelected
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onDeselected:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 33754121}
+        m_TargetAssemblyTypeName: App, Assembly-CSharp
+        m_MethodName: OnDeselected
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onNothing:
     m_PersistentCalls:
       m_Calls: []
@@ -3939,12 +4109,12 @@ GameObject:
   - component: {fileID: 2088458023}
   - component: {fileID: 2088458022}
   m_Layer: 5
-  m_Name: Press Add Button Tip
+  m_Name: Tip1 Press the add button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2088458021
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4018,3 +4188,4 @@ SceneRoots:
   - {fileID: 33754122}
   - {fileID: 1336043572}
   - {fileID: 2003392673}
+  - {fileID: 782628380}
